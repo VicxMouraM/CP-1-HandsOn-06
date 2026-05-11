@@ -1,4 +1,4 @@
-# ⚡ AsyncLab
+# ⚡ CP-1 HandsOn 06 - AsyncLab
 
 ## 🧪 Laboratório Async
 
@@ -16,39 +16,32 @@ Analisar o programa e tornar a sua execução assíncrona.
 
 ## 🛠️ Descrição das modificações realizadas
 
-O programa original foi alterado para utilizar chamadas assíncronas em operações de entrada e saída, além de paralelismo em trechos de processamento mais pesado.
+O programa original foi analisado para identificar pontos que poderiam ser transformados em chamadas assíncronas e trechos que poderiam ser executados de forma paralela.
 
-As principais modificações foram:
+As principais modificações realizadas foram:
 
-- Uso de `HttpClient.GetStringAsync` para baixar o CSV de municípios de forma assíncrona;
-- Uso de `File.WriteAllTextAsync` para salvar o arquivo CSV temporário;
-- Uso de `File.ReadAllLinesAsync` para leitura assíncrona do CSV;
-- Uso de `Task.WhenAll` para processar as UFs de forma concorrente;
-- Uso de `File.WriteAllLinesAsync` para gerar os arquivos `.csv`;
-- Uso de `File.WriteAllTextAsync` para gerar os arquivos `.json`;
-- Uso de `Parallel.For` para calcular os hashes dos municípios em paralelo;
-- Medição do tempo total e do tempo por UF com `Stopwatch`.
+- Uso de `async` e `await` no fluxo principal do programa;
+- Download do arquivo CSV de municípios com `HttpClient.GetStringAsync`;
+- Escrita do arquivo temporário com `File.WriteAllTextAsync`;
+- Leitura do CSV com `File.ReadAllLinesAsync`;
+- Processamento das UFs de forma concorrente utilizando `Task.WhenAll`;
+- Cálculo dos hashes dos municípios em paralelo utilizando `Parallel.For`;
+- Geração dos arquivos `.csv` com `File.WriteAllLinesAsync`;
+- Geração dos arquivos `.json` com `File.WriteAllTextAsync`;
+- Medição do tempo de execução com `Stopwatch`;
+- Exibição do tempo individual por UF e do tempo total da execução.
 
 ---
 
 ## 📊 Impactos observados no tempo de execução
 
-Com as alterações, o programa passou a evitar bloqueios em operações de download, leitura e escrita de arquivos.
+Com as alterações realizadas, o programa passou a executar operações de download, leitura e escrita de arquivos de forma assíncrona, evitando bloqueios desnecessários durante a execução.
 
-O processamento das UFs passou a ocorrer de forma concorrente com `Task.WhenAll`, e o cálculo dos hashes foi otimizado com `Parallel.For`.
+Além disso, o uso de `Task.WhenAll` permitiu que as UFs fossem processadas de forma concorrente, enquanto o `Parallel.For` acelerou o cálculo dos hashes dos municípios.
 
-Durante a execução, foi possível observar melhor aproveitamento dos recursos da máquina e maior organização do fluxo do programa.
+Na execução realizada, foram geradas 27 UFs.
 
-Tempo total observado na execução: coloque aqui o tempo que apareceu no console.
+Tempo total observado:
 
----
-
-## 🌐 Repositório original
-
-[https://github.com/3ES-CSharp/AsyncLab](https://github.com/3ES-CSharp/AsyncLab)
-
----
-
-## 📦 Repositório da entrega
-
-[https://github.com/VicxMouraM/CP-1-HandsOn-06](https://github.com/VicxMouraM/CP-1-HandsOn-06)
+```txt
+0m 08s 270ms
